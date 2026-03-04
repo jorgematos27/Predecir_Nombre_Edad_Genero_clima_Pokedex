@@ -10,7 +10,6 @@ import {
     View,
 } from "react-native";
 
-// Función que determina la categoría según la edad
 const categorizar = (edad) => {
   if (edad < 30)
     return {
@@ -105,7 +104,7 @@ export default function EdadScreen() {
             <Text style={styles.etiquetaTexto}>{categoria.label}</Text>
           </View>
           <Text style={styles.nombreTexto}>{resultado.name}</Text>
-          {/* Si la edad es null la API no tiene datos suficientes */}
+
           <Text style={styles.edadNumero}>
             {resultado.age ? resultado.age : "?"} años
           </Text>

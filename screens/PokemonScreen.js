@@ -44,13 +44,11 @@ export default function PokemonScreen() {
     if (!pokemon?.cries?.latest) return;
     setSonidoCargando(true);
     try {
-      // Audio.Sound es el componente de expo-av para sonidos cortos
-      // loadAsync carga el archivo, playAsync lo reproduce
       const { sound } = await Audio.Sound.createAsync(
         { uri: pokemon.cries.latest },
         { shouldPlay: true },
       );
-      // Descargamos el sonido de memoria cuando termina
+
       sound.setOnPlaybackStatusUpdate((status) => {
         if (status.didJustFinish) sound.unloadAsync();
       });
@@ -92,7 +90,6 @@ export default function PokemonScreen() {
 
       {pokemon && (
         <View style={styles.card}>
-          {/* Sprite oficial del Pokémon */}
           <Image
             source={{
               uri: pokemon.sprites.other["official-artwork"].front_default,
@@ -118,7 +115,6 @@ export default function PokemonScreen() {
             ))}
           </View>
 
-          {/* ESTADÍSTICAS */}
           <Text style={styles.seccion}>ESTADÍSTICAS</Text>
           <View style={styles.stats}>
             <View style={styles.statFila}>
@@ -135,7 +131,6 @@ export default function PokemonScreen() {
             </View>
           </View>
 
-          {/* HABILIDADES */}
           <Text style={styles.seccion}>HABILIDADES</Text>
           <View style={styles.habilidades}>
             {pokemon.abilities.map((a) => (
@@ -145,7 +140,6 @@ export default function PokemonScreen() {
             ))}
           </View>
 
-          {/* BOTÓN DE SONIDO */}
           <TouchableOpacity
             style={styles.sonidoBoton}
             onPress={reproducirSonido}

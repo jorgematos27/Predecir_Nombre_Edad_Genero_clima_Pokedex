@@ -27,8 +27,6 @@ export default function UniversidadesScreen() {
     setUniversidades([]);
 
     try {
-      // El proxy de adamix.net devuelve un array de universidades
-      // cada una tiene: name, domains[], web_pages[]
       const response = await axios.get(
         `https://adamix.net/proxy.php?country=${encodeURIComponent(pais)}`,
       );
@@ -78,7 +76,6 @@ export default function UniversidadesScreen() {
         </Text>
       )}
 
-      {/* FlatList es más eficiente que map para listas largas */}
       <FlatList
         data={universidades}
         keyExtractor={(item, index) => index.toString()}
@@ -87,12 +84,10 @@ export default function UniversidadesScreen() {
             <Text style={styles.numero}>#{index + 1}</Text>
             <Text style={styles.nombre}>{item.name}</Text>
 
-            {/* item.domains es un array, mostramos el primero */}
             {item.domains?.[0] && (
               <Text style={styles.dominio}>{item.domains[0]}</Text>
             )}
 
-            {/* item.web_pages es un array de URLs */}
             {item.web_pages?.[0] && (
               <TouchableOpacity
                 onPress={() => Linking.openURL(item.web_pages[0])}

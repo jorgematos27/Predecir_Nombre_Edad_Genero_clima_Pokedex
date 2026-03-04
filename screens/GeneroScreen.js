@@ -10,17 +10,15 @@ import {
 } from "react-native";
 
 export default function GeneroScreen() {
-  // useState para guardar el nombre que escribe el usuario
   const [nombre, setNombre] = useState("");
-  // useState para guardar el resultado de la API
+
   const [resultado, setResultado] = useState(null);
-  // useState para mostrar el spinner de carga
+
   const [cargando, setCargando] = useState(false);
-  // useState para errores
+
   const [error, setError] = useState("");
 
   const buscarGenero = async () => {
-    // Validación básica
     if (!nombre.trim()) {
       setError("Escribe un nombre primero");
       return;
@@ -30,9 +28,6 @@ export default function GeneroScreen() {
     setResultado(null);
 
     try {
-      // axios.get hace una petición GET a la URL.
-      // Es como fetch() pero más simple.
-      // La respuesta viene en response.data
       const response = await axios.get(
         `https://api.genderize.io/?name=${nombre}`,
       );
@@ -40,12 +35,10 @@ export default function GeneroScreen() {
     } catch (e) {
       setError("Error al consultar la API");
     } finally {
-      // finally se ejecuta siempre, haya error o no
       setCargando(false);
     }
   };
 
-  // Determinamos el color de fondo según el género
   const esMasculino = resultado?.gender === "male";
   const fondoColor = resultado
     ? esMasculino
@@ -65,7 +58,6 @@ export default function GeneroScreen() {
         placeholder="Ej: Jorge, Maria, Alex..."
         placeholderTextColor="#666"
         value={nombre}
-        // onChangeText se ejecuta cada vez que el usuario escribe
         onChangeText={setNombre}
         autoCapitalize="words"
       />
@@ -74,7 +66,6 @@ export default function GeneroScreen() {
         <Text style={styles.botonTexto}>PREDECIR</Text>
       </TouchableOpacity>
 
-      {/* Muestra spinner mientras carga */}
       {cargando && (
         <ActivityIndicator
           size="large"
@@ -83,10 +74,8 @@ export default function GeneroScreen() {
         />
       )}
 
-      {/* Muestra error si hay */}
       {error ? <Text style={styles.error}>{error}</Text> : null}
 
-      {/* Muestra resultado si existe */}
       {resultado && (
         <View style={[styles.resultado, { backgroundColor: fondoColor }]}>
           <Text style={styles.resultadoNombre}>{resultado.name}</Text>

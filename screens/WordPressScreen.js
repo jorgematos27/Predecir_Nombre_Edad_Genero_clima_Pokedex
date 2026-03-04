@@ -15,12 +15,10 @@ const WP_API = "https://engineering.fb.com/wp-json/wp/v2/posts?per_page=3";
 const LOGO =
   "https://engineering.fb.com/wp-content/uploads/2023/08/Meta_lockup_positive-primary_RGB.jpg";
 
-// Función que limpia el HTML que viene en el excerpt de WordPress
-// WordPress devuelve HTML como "<p>texto</p>" y necesitamos solo el texto
 const limpiarHTML = (html) => {
   return html
-    .replace(/<[^>]*>/g, "") // elimina todas las etiquetas HTML
-    .replace(/&#8230;/g, "...") // reemplaza entidades HTML
+    .replace(/<[^>]*>/g, "")
+    .replace(/&#8230;/g, "...")
     .replace(/&amp;/g, "&")
     .trim();
 };
@@ -30,7 +28,6 @@ export default function WordPressScreen() {
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState("");
 
-  // useEffect con [] = se ejecuta solo al montar el componente
   useEffect(() => {
     const obtenerNoticias = async () => {
       try {
@@ -81,7 +78,6 @@ export default function WordPressScreen() {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item, index }) => (
           <View style={styles.tarjeta}>
-            {/* Imagen destacada del post si existe */}
             {item.jetpack_featured_media_url ? (
               <Image
                 source={{ uri: item.jetpack_featured_media_url }}
@@ -92,10 +88,8 @@ export default function WordPressScreen() {
             <View style={styles.tarjetaContenido}>
               <Text style={styles.numero}>0{index + 1}</Text>
 
-              {/* item.title.rendered tiene el título del post */}
               <Text style={styles.titular}>{item.title.rendered}</Text>
 
-              {/* item.excerpt.rendered tiene el resumen en HTML, lo limpiamos */}
               <Text style={styles.resumen} numberOfLines={3}>
                 {limpiarHTML(item.excerpt.rendered)}
               </Text>
@@ -108,7 +102,6 @@ export default function WordPressScreen() {
                 })}
               </Text>
 
-              {/* item.link tiene la URL original del post */}
               <TouchableOpacity
                 style={styles.visitarBoton}
                 onPress={() => Linking.openURL(item.link)}

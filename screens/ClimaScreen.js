@@ -8,15 +8,10 @@ import {
     View,
 } from "react-native";
 
-// Para el clima necesitas una API key GRATIS de openweathermap.org
-// Regístrate en: https://openweathermap.org/api
-// La key llega al email en unos minutos
-// Reemplaza 'TU_API_KEY' con tu key real
-const API_KEY = "db3193c9d236434d03e92e17cf60ca4f";
+const API_KEY = "b945cb9680835c007d38464e21b2bbfd";
 const CIUDAD = "Santo Domingo";
 const PAIS = "DO";
 
-// Función que devuelve un ícono según el código del clima
 const iconoClima = (codigo) => {
   if (codigo.startsWith("01")) return "☀️";
   if (codigo.startsWith("02")) return "⛅";
@@ -32,9 +27,6 @@ export default function ClimaScreen() {
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState("");
 
-  // useEffect se ejecuta cuando el componente se monta por primera vez.
-  // El array vacío [] al final significa "solo ejecutar una vez".
-  // Es como componentDidMount en clases antiguas de React.
   useEffect(() => {
     const obtenerClima = async () => {
       try {

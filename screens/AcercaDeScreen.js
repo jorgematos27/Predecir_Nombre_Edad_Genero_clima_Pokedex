@@ -16,7 +16,7 @@ const MIS_DATOS = {
   universidad: "ITLA — 2024/2026",
   email: "jorgejoel277@gmail.com",
   telefono: "+1 829 803 9915",
-  // Cambia por: require('../assets/mifoto.jpg')
+
   foto: require("../assets/mifoto.jpg"),
 };
 

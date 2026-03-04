@@ -4,7 +4,7 @@
     "slug": "couteau-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/mifoto.jpg",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
 
@@ -18,7 +18,7 @@
     },
 
     "web": {
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/mifoto.jpg"
     },
 
     "plugins": [

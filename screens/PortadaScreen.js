@@ -7,7 +7,6 @@ export default function PortadaScreen() {
       <Text style={styles.subtitulo}>Tu caja de herramientas digital</Text>
       <View style={styles.divider} />
 
-      {/* Imagen de caja de herramientas — puedes cambiarla por una local */}
       <Image
         source={{
           uri: "https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=800",
